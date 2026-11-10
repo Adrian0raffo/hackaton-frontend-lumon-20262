@@ -6,6 +6,12 @@ import { GridPage } from "./pages/GridPage";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
+import { RefinerPage } from "./pages/RefinerPage";
+import { RefinerEditPage } from "./pages/RefinerEditPage";
+import { BadgePage } from "./pages/BadgePage";
+import { IncidentsPage } from "./pages/IncidentsPage";
+import { IncidentNewPage } from "./pages/IncidentNewPage";
+import { RefinersPage } from "./pages/RefinersPage";
 import { StatusPage } from "./pages/StatusPage";
 
 function Private({ children, permission }: { children: ReactNode; permission?: string }) {
@@ -29,6 +35,12 @@ export function App() {
       <Route path="/inicio" element={<Private><HomePage /></Private>} />
       <Route path="/files" element={<Private permission="files:read"><FilesPage /></Private>} />
       <Route path="/files/:id/refine" element={<Private permission="files:read"><GridPage /></Private>} />
+      <Route path="/refiners" element={<Private permission="refiners:read"><RefinersPage /></Private>} />
+      <Route path="/refiners/:id" element={<Private permission="refiners:read"><RefinerPage /></Private>} />
+      <Route path="/refiners/:id/edit" element={<Private permission="refiners:write"><RefinerEditPage /></Private>} />
+      <Route path="/refiners/:id/badge" element={<Private permission="media:upload"><BadgePage /></Private>} />
+      <Route path="/incidents" element={<Private permission="incidents:read"><IncidentsPage /></Private>} />
+      <Route path="/incidents/new" element={<Private permission="incidents:create"><IncidentNewPage /></Private>} />
       <Route path="/estado" element={<Private><StatusPage /></Private>} />
       <Route path="*" element={<main className="grid min-h-screen place-items-center bg-[#081b19] p-6 text-center text-emerald-100"><div><p className="text-sm uppercase tracking-[0.3em] text-emerald-400">404</p><h1 className="mt-3 text-3xl font-semibold">Esta sala no existe</h1><Link className="mt-5 inline-block text-emerald-300 underline" to="/files">Volver a archivos</Link></div></main>} />
     </Routes>

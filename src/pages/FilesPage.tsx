@@ -63,7 +63,7 @@ export function FilesPage() {
       <div className="mx-auto max-w-5xl">
         <header className="flex flex-wrap items-end justify-between gap-4">
           <div><p className="text-xs uppercase tracking-[0.3em] text-emerald-300">Macrodata Refinement</p><h1 className="mt-2 text-3xl font-semibold">Archivos de datos</h1></div>
-          <Link className="text-sm text-emerald-300 underline" to="/estado">Estado del piso</Link>
+          <div className="flex gap-4"><Link className="text-sm text-emerald-300 underline" to="/refiners">Expedientes</Link><Link className="text-sm text-emerald-300 underline" to="/estado">Estado del piso</Link></div>
         </header>
         <div className="mt-8 grid gap-3 sm:grid-cols-4">
           <label className="sm:col-span-2">Buscar archivo<input value={search} onChange={(event) => setSearch(event.target.value)} className="mt-1 w-full rounded-lg border border-emerald-800 bg-[#102823] px-3 py-2" /></label>

@@ -19,6 +19,7 @@ export type RequestOptions = {
   accessToken?: string;
   signal?: AbortSignal;
   headers?: Record<string, string>;
+  onResponse?: (response: Response) => void;
 };
 
 type ErrorBody = {
@@ -48,6 +49,7 @@ export async function apiRequest<T>(
     },
     body: options.body === undefined ? undefined : JSON.stringify(options.body),
   });
+  options.onResponse?.(response);
 
   const text = await response.text();
   let data: unknown;
