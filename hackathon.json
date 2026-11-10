@@ -1,11 +1,11 @@
 {
-  "teamCode": "TEAM-000",
-  "teamName": "Nombre de la cuadrilla",
-  "deployUrl": "https://",
-  "storageProvider": "SUPABASE | CLOUDINARY",
+  "teamCode": "TEAM-055",
+  "teamName": "Uliboy Utec",
+  "deployUrl": "https://hackaton-frontend-lumon-20262-three.vercel.app",
+  "storageProvider": "SUPABASE",
   "integrantes": [
-    { "nombre": "Nombre Apellido", "codigo": "CODIGO UTEC" },
-    { "nombre": "Nombre Apellido", "codigo": "CODIGO UTEC" },
-    { "nombre": "Nombre Apellido", "codigo": "CODIGO UTEC" }
+    { "nombre": "Adriano Raffo", "codigo": "202210481" },
+    { "nombre": "Mathias Pariona", "codigo": "202210245" },
+    { "nombre": "Gonzalo Gaviño", "codigo": "202210146" }
   ]
 }
