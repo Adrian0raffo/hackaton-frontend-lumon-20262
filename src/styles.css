@@ -8,3 +8,15 @@
 body {
   margin: 0;
 }
+
+@keyframes tremor {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(1px); }
+  75% { transform: translateX(-1px); }
+}
+
+.scary-cell { animation: tremor 0.35s infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .scary-cell { animation: none; outline: 1px dashed #86efac; outline-offset: -3px; }
+}

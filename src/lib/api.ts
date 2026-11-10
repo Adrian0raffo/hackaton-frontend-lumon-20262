@@ -6,11 +6,20 @@ export class ApiError extends Error {
     public readonly code: string,
     message: string,
     public readonly details: unknown,
+    public readonly retryAfter: number | null = null,
   ) {
     super(message);
     this.name = "ApiError";
   }
 }
+
+export type RequestOptions = {
+  method?: "GET" | "POST" | "PUT" | "PATCH";
+  body?: unknown;
+  accessToken?: string;
+  signal?: AbortSignal;
+  headers?: Record<string, string>;
+};
 
 type ErrorBody = {
   error?: string;
@@ -20,12 +29,7 @@ type ErrorBody = {
 
 export async function apiRequest<T>(
   path: string,
-  options: {
-    method?: "GET" | "POST";
-    body?: unknown;
-    accessToken?: string;
-    signal?: AbortSignal;
-  } = {},
+  options: RequestOptions = {},
 ): Promise<T> {
   if (!baseUrl) {
     throw new Error("Falta configurar VITE_API_BASE_URL.");
@@ -40,6 +44,7 @@ export async function apiRequest<T>(
       ...(options.accessToken
         ? { Authorization: `Bearer ${options.accessToken}` }
         : {}),
+      ...options.headers,
     },
     body: options.body === undefined ? undefined : JSON.stringify(options.body),
   });
@@ -59,6 +64,9 @@ export async function apiRequest<T>(
       error?.error ?? "REQUEST_FAILED",
       error?.message ?? "No se pudo completar la solicitud.",
       error?.details ?? null,
+      Number.isFinite(Number(response.headers.get("Retry-After")))
+        ? Number(response.headers.get("Retry-After"))
+        : null,
     );
   }
 

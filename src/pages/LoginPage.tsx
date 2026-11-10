@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { useAuth } from "../auth/AuthContext";
 import { ApiError } from "../lib/api";
 
@@ -57,6 +58,9 @@ export function LoginPage() {
             {pending ? "Ingresando…" : "Ingresar"}
           </button>
         </form>
+        <p className="mt-5 text-center text-sm text-[#b8ccc2]">
+          ¿Primera vez en el piso? <Link className="text-emerald-300 underline" to="/register">Registrar una cuadrilla</Link>
+        </p>
       </div>
     </main>
   );
